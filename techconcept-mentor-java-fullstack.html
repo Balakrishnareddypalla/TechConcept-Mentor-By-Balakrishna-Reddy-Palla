@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechConcept Mentor by Balakrishna Reddy Palla — learn Java Full Stack Development with practical projects, mentoring, and interview preparation.">
+  <title>TechConcept Mentor | Java Full Stack Programming</title>
+  <style>
+    :root {
+      --navy: #101a36;
+      --navy2: #17264b;
+      --blue: #4169e1;
+      --cyan: #31c5d9;
+      --ink: #172033;
+      --muted: #63708a;
+      --light: #f5f8ff;
+      --white: #fff;
+      --line: #e3e9f5;
+      --shadow: 0 18px 48px rgba(23, 38, 75, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif; color: var(--ink); line-height: 1.6; background: #fff; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1140px, 92%); margin: auto; }
+    .topbar { background: #0b1228; color: #dce6ff; font-size: .88rem; padding: 8px 0; }
+    .topbar .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--navy); letter-spacing: -.4px; }
+    .brand-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; color: white; font-weight: 900; background: linear-gradient(135deg, var(--blue), var(--cyan)); box-shadow: 0 8px 20px #4169e13b; }
+    .brand small { display: block; font-size: .7rem; color: var(--muted); font-weight: 600; letter-spacing: .8px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 25px; align-items: center; font-size: .94rem; font-weight: 650; color: #4d5872; }
+    .nav-links a:hover { color: var(--blue); }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 0; border-radius: 10px; padding: 12px 19px; font-weight: 750; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px #4169e12e; }
+    .btn-primary { background: linear-gradient(135deg, var(--blue), #6558e8); color: white; }
+    .btn-outline { color: white; border: 1px solid #ffffff70; background: #ffffff0d; }
+    .hero { position: relative; overflow: hidden; color: white; background: radial-gradient(circle at 80% 18%, #3459aa 0, transparent 32%), linear-gradient(120deg, #0c1530, #172b56 68%, #17274a); padding: 82px 0 90px; }
+    .hero:before { content: ""; position: absolute; width: 460px; height: 460px; border: 1px solid #ffffff12; border-radius: 50%; right: -90px; bottom: -250px; box-shadow: 0 0 0 55px #ffffff06, 0 0 0 110px #ffffff04; }
+    .hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 50px; align-items: center; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #ffffff30; background: #ffffff0d; border-radius: 999px; padding: 7px 13px; color: #bfefff; font-size: .83rem; font-weight: 700; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.45rem); line-height: 1.08; letter-spacing: -2px; margin: 22px 0; }
+    h1 span { color: #64e2ef; }
+    .hero p { max-width: 620px; color: #d1dcf4; font-size: 1.1rem; margin: 0 0 28px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-note { margin-top: 24px; color: #b8c7e8; font-size: .9rem; }
+    .code-window { border: 1px solid #ffffff24; background: #0a1125e8; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 70px #0005; transform: rotate(1deg); }
+    .window-head { display: flex; align-items: center; gap: 7px; padding: 14px 17px; border-bottom: 1px solid #ffffff15; color: #91a3c8; font-size: .8rem; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #ff6d7a; } .dot:nth-child(2) { background: #ffc65c; } .dot:nth-child(3) { background: #4bd6a2; }
+    .window-head span:last-child { margin-left: auto; }
+    pre { margin: 0; padding: 24px; overflow: auto; color: #dce8ff; font: 14px/1.85 Consolas, Monaco, monospace; }
+    .kw { color: #c792ea; } .type { color: #82d9ff; } .str { color: #c3e88d; } .comment { color: #8291b4; }
+    .stats { background: white; border-bottom: 1px solid var(--line); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: 24px 0; gap: 18px; }
+    .stat { text-align: center; border-right: 1px solid var(--line); } .stat:last-child { border: 0; }
+    .stat strong { display: block; color: var(--navy); font-size: 1.35rem; } .stat span { color: var(--muted); font-size: .88rem; }
+    section { padding: 78px 0; }
+    .section-head { max-width: 720px; text-align: center; margin: 0 auto 42px; }
+    .kicker { color: var(--blue); font-weight: 800; font-size: .8rem; letter-spacing: 1.6px; text-transform: uppercase; }
+    h2 { margin: 9px 0 12px; color: var(--navy); font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.2; letter-spacing: -.9px; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { border: 1px solid var(--line); border-radius: 16px; padding: 25px; background: white; transition: .2s; }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #c8d6ff; }
+    .iconbox { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 13px; background: #edf2ff; font-size: 1.45rem; margin-bottom: 16px; }
+    .card h3 { color: var(--navy); margin: 0 0 8px; font-size: 1.15rem; }
+    .card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .curriculum { background: var(--light); }
+    .curriculum-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 44px; align-items: start; }
+    .curriculum-intro { position: sticky; top: 110px; }
+    .curriculum-intro p { color: var(--muted); }
+    .check-list { list-style: none; padding: 0; margin: 22px 0; }
+    .check-list li { margin: 10px 0; color: #3e4b66; }
+    .check-list li:before { content: "✓"; color: #168d73; font-weight: 900; margin-right: 10px; }
+    .modules { display: grid; gap: 13px; }
+    .module { background: white; border: 1px solid var(--line); border-radius: 13px; padding: 18px 20px; display: flex; gap: 15px; align-items: flex-start; }
+    .module-num { flex: 0 0 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: #e9efff; color: var(--blue); font-weight: 850; }
+    .module h3 { margin: 0 0 4px; color: var(--navy); font-size: 1rem; }
+    .module p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .project { padding: 25px; border-radius: 16px; color: white; background: linear-gradient(145deg, #17264b, #243f78); min-height: 210px; }
+    .project:nth-child(2) { background: linear-gradient(145deg, #125d75, #168a9c); }
+    .project:nth-child(3) { background: linear-gradient(145deg, #4a337b, #6b56b6); }
+    .project .tag { display: inline-block; background: #ffffff20; padding: 5px 9px; border-radius: 99px; font-size: .74rem; margin-bottom: 14px; }
+    .project h3 { margin: 0 0 8px; } .project p { margin: 0; color: #e0e8ff; font-size: .92rem; }
+    .mentor { background: var(--light); }
+    .mentor-box { display: grid; grid-template-columns: .7fr 1.3fr; gap: 35px; align-items: center; background: white; border: 1px solid var(--line); border-radius: 22px; padding: 35px; box-shadow: var(--shadow); }
+    .mentor-avatar { min-height: 245px; display: grid; place-items: center; border-radius: 17px; color: white; text-align: center; background: radial-gradient(circle at 30% 20%, #5ce0e9, transparent 30%), linear-gradient(135deg, #253c80, #121b3d); }
+    .avatar-circle { width: 100px; height: 100px; display: grid; place-items: center; border: 3px solid #ffffff8a; border-radius: 50%; font-size: 2rem; font-weight: 900; background: #ffffff1a; }
+    .mentor-avatar strong { display: block; margin-top: 12px; }
+    .mentor-copy p { color: var(--muted); }
+    .mentor-copy h2 { font-size: 2rem; }
+    .contact { color: white; background: linear-gradient(120deg, #0c1530, #1b3264); }
+    .contact-grid { display: grid; grid-template-columns: 1fr .85fr; gap: 45px; align-items: center; }
+    .contact h2 { color: white; } .contact p { color: #d0dcf5; }
+    .contact-panel { padding: 27px; border: 1px solid #ffffff2b; border-radius: 17px; background: #ffffff0b; }
+    .contact-item { display: flex; gap: 12px; margin: 14px 0; color: #e2eaff; }
+    footer { background: #080e20; color: #9daac8; padding: 22px 0; font-size: .86rem; }
+    footer .container { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .hero-grid, .curriculum-grid, .mentor-box, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 0; }
+      .code-window { transform: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border: 0; }
+      .cards, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .curriculum-intro { position: static; }
+    }
+    @media (max-width: 560px) {
+      .cards, .projects-grid { grid-template-columns: 1fr; }
+      .brand { font-size: .92rem; }
+      .brand small { font-size: .62rem; }
+      h1 { letter-spacing: -1.2px; }
+      section { padding: 58px 0; }
+      .mentor-box { padding: 20px; }
+      .topbar .container { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container"><span>🚀 Practical learning • Real-world projects • Interview preparation</span><span>Java Full Stack Programming</span></div>
+  </div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="TechConcept Mentor home">
+        <span class="brand-mark">TC</span>
+        <span>TechConcept Mentor<small>By Balakrishna Reddy Palla</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#program">Program</a><a href="#curriculum">Curriculum</a><a href="#projects">Projects</a><a href="#mentor">Mentor</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="#contact">Enquire Now ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">✦ Build skills. Build projects. Build your future.</span>
+          <h1>Become a confident <span>Java Full Stack</span> Developer.</h1>
+          <p>Learn core programming concepts, modern Java technologies, frontend development, databases, and deployment through a structured, practical learning journey.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#curriculum">Explore Curriculum →</a>
+            <a class="btn btn-outline" href="#projects">View Project Ideas</a>
+          </div>
+          <div class="hero-note">Designed for students, freshers, working professionals, and career switchers.</div>
+        </div>
+        <div class="code-window" aria-label="Java code example">
+          <div class="window-head"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>Welcome.java</span></div>
+          <pre><span class="kw">public class</span> <span class="type">Welcome</span> {
+  <span class="kw">public static void</span> main(String[] args) {
+    String goal = <span class="str">"Become a Full Stack Developer"</span>;
+    String mentor = <span class="str">"TechConcept Mentor"</span>;
+
+    System.out.println(<span class="str">"Learn by building!"</span>);
+    System.out.println(goal);
+    System.out.println(mentor);
+  }
+}
+
+<span class="comment">// Concept → Code → Project → Confidence</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="container stats-grid">
+        <div class="stat"><strong>Java</strong><span>Core to Advanced</span></div>
+        <div class="stat"><strong>Full Stack</strong><span>Frontend + Backend</span></div>
+        <div class="stat"><strong>Hands-on</strong><span>Labs and assignments</span></div>
+        <div class="stat"><strong>Career Ready</strong><span>Projects and interview prep</span></div>
+      </div>
+    </div>
+
+    <section id="program">
+      <div class="container">
+        <div class="section-head"><div class="kicker">The learning experience</div><h2>Learn the technologies employers use</h2><p>Build a strong foundation, connect concepts across the stack, and practise turning requirements into working applications.</p></div>
+        <div class="cards">
+          <article class="card"><div class="iconbox">☕</div><h3>Java Programming</h3><p>OOP, collections, exceptions, generics, streams, lambdas, multithreading, and clean coding practices.</p></article>
+          <article class="card"><div class="iconbox">⚙️</div><h3>Spring Boot & APIs</h3><p>Build REST APIs with Spring Boot, validation, exception handling, Spring Data JPA, and secure application patterns.</p></article>
+          <article class="card"><div class="iconbox">🖥️</div><h3>Frontend Development</h3><p>HTML, CSS, JavaScript, TypeScript, responsive layouts, Angular components, forms, and API integration.</p></article>
+          <article class="card"><div class="iconbox">🗄️</div><h3>Database Skills</h3><p>SQL, joins, subqueries, constraints, indexes, transactions, schema design, and database connectivity.</p></article>
+          <article class="card"><div class="iconbox">🔗</div><h3>Full Stack Integration</h3><p>Connect frontend screens to backend services, manage data flow, and handle loading, validation, and errors.</p></article>
+          <article class="card"><div class="iconbox">🚢</div><h3>Tools & Deployment</h3><p>Git, Maven, Postman, Swagger, Docker fundamentals, CI/CD concepts, and deployment awareness.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="curriculum" id="curriculum">
+      <div class="container curriculum-grid">
+        <div class="curriculum-intro">
+          <div class="kicker">Program roadmap</div><h2>A step-by-step path from fundamentals to full stack</h2>
+          <p>Progress through focused modules, practise every major concept, and apply what you learn in an integrated project.</p>
+          <ul class="check-list"><li>Concept explanations with code examples</li><li>Practice exercises and coding challenges</li><li>Real-world scenarios and project milestones</li><li>Interview-focused revision and mock questions</li></ul>
+          <a class="btn btn-primary" href="#contact">Ask About the Program ↗</a>
+        </div>
+        <div class="modules">
+          <div class="module"><div class="module-num">01</div><div><h3>Programming Foundations & Core Java</h3><p>Variables, control flow, methods, OOP, strings, arrays, collections, exceptions, and Java 8+ features.</p></div></div>
+          <div class="module"><div class="module-num">02</div><div><h3>SQL & Relational Databases</h3><p>Data modelling, DDL/DML, joins, grouping, subqueries, indexes, transactions, and JDBC.</p></div></div>
+          <div class="module"><div class="module-num">03</div><div><h3>Web Fundamentals & TypeScript</h3><p>Semantic HTML, CSS layouts, JavaScript, asynchronous programming, TypeScript, and browser basics.</p></div></div>
+          <div class="module"><div class="module-num">04</div><div><h3>Angular Frontend</h3><p>Components, templates, routing, services, dependency injection, forms, HTTP client, and reusable UI.</p></div></div>
+          <div class="module"><div class="module-num">05</div><div><h3>Spring Boot Backend</h3><p>REST controllers, service and repository layers, JPA/Hibernate, validation, exception handling, and testing basics.</p></div></div>
+          <div class="module"><div class="module-num">06</div><div><h3>Security, Testing & Deployment</h3><p>Authentication concepts, API testing, unit testing, Git workflows, Docker basics, and deployment fundamentals.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head"><div class="kicker">Build your portfolio</div><h2>Practice with real-world project ideas</h2><p>Apply Java, databases, APIs, and frontend skills to practical business scenarios.</p></div>
+        <div class="projects-grid">
+          <article class="project"><span class="tag">Banking domain</span><h3>Banking Transaction Portal</h3><p>Customer profiles, account summaries, transaction history, input validation, and secure API design concepts.</p></article>
+          <article class="project"><span class="tag">Business application</span><h3>Employee Management System</h3><p>CRUD operations, search and filters, form validation, pagination, and relational data modelling.</p></article>
+          <article class="project"><span class="tag">E-commerce domain</span><h3>Online Shopping Application</h3><p>Product catalogue, cart workflow, order tracking, REST integration, and clear separation of application layers.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mentor" id="mentor">
+      <div class="container">
+        <div class="mentor-box">
+          <div class="mentor-avatar"><div><div class="avatar-circle">BRP</div><strong>Balakrishna Reddy Palla</strong><span>Technical Mentor</span></div></div>
+          <div class="mentor-copy"><div class="kicker">Meet your mentor</div><h2>TechConcept Mentor</h2><p>A learning initiative focused on making programming concepts clear, practical, and relevant to real development work. The goal is to help learners understand not only <em>how</em> to write code, but also <em>why</em> a solution works.</p><ul class="check-list"><li>Concept-first explanations with practical coding</li><li>Step-by-step guidance through application architecture</li><li>Project-oriented practice and interview preparation</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div><div class="kicker" style="color:#65e0ed">Take the next step</div><h2>Ready to start your Java Full Stack journey?</h2><p>Get in touch to ask about upcoming batches, course coverage, learning format, and project practice.</p><a class="btn btn-primary" href="mailto:visitbalu2000@gmail.com?subject=Java%20Full%20Stack%20Training%20Enquiry">Email for Enquiry ↗</a></div>
+        <div class="contact-panel"><h3 style="margin-top:0">Program at a glance</h3><div class="contact-item"><span>📘</span><span><strong>Focus:</strong> Java Full Stack Development</span></div><div class="contact-item"><span>🧑‍💻</span><span><strong>Format:</strong> Online / instructor-led (confirm availability)</span></div><div class="contact-item"><span>🎯</span><span><strong>For:</strong> Students, freshers, and professionals</span></div><div class="contact-item"><span>✉️</span><span><strong>Contact:</strong> Replace this demo email with your official email</span></div></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container"><span>© <span id="year">2026</span> TechConcept Mentor — By Balakrishna Reddy Palla</span><span>Learn • Practise • Build • Grow</span></div></footer>
+</body>
+</html>
